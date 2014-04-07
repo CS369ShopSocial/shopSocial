@@ -1,0 +1,34 @@
+Script started on Mon Feb 17 13:07:45 2014
+[?1034hbash-3.2$ rails c
+Loading development environment (Rails 4.0.2)
+[?1034h2.0.0-p353 :001 > def string_shuffle(s)
+2.0.0-p353 :002?>   s.split('').sh[Khuffle.join
+2.0.0-p353 :003?>   end
+ => nil 
+2.0.0-p353 :004 > string_shuffle("foobar")
+ => "foobar" 
+2.0.0-p353 :005 > string_shuffle('[K"foobar")
+ => "oobrfa" 
+2.0.0-p353 :006 > class String
+2.0.0-p353 :007?>   ef[K[Kdef shuffle
+2.0.0-p353 :008?>     self.split('').shuffle.join
+2.0.0-p353 :009?>     end
+2.0.0-p353 :010?>   end
+ => nil 
+2.0.0-p353 :011 > "foobar".shuffle
+ => "oorfba" 
+2.0.0-p353 :012 > person1 = { :[Kfirat[K[Kst: "Rick", last"[K: kelly }[K[K[K[K[K[K[K"Arty" }
+ => {:first=>"Rick", :last=>"Arty"} 
+2.0.0-p353 :013 > person2 = { first: "Kelly", last: "ar[K[KArty" }
+ => {:first=>"Kelly", :last=>"Arty"} 
+2.0.0-p353 :014 > person3 = { first: "Erik", last: "Arty" }
+ => {:first=>"Erik", :last=>"Arty"} 
+2.0.0-p353 :015 > params = { father: person1, mother pers[K[K[K[K[K: person2, child: person3 }
+ => {:father=>{:first=>"Rick", :last=>"Arty"}, :mother=>{:first=>"Kelly", :last=>"Arty"}, :child=>{:first=>"Erik", :last=>"Arty"}} 
+2.0.0-p353 :016 > params[:father][:first]
+ => "Rick" 
+2.0.0-p353 :017 > f[Kext[Kit
+bash-3.2$ exit
+exit
+
+Script done on Mon Feb 17 13:11:40 2014
