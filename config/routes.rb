@@ -1,4 +1,4 @@
-SampleApp::Application.routes.draw do
+ShopSocial::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   get "static_pages/home"
