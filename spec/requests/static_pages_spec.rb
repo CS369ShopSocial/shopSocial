@@ -33,8 +33,7 @@ describe "Static pages" do
     visit root_path
     click_link "About"
     expect(page).to have_title(full_title('About Shop Social'))
-    click_link "Home"
-    click_link "Sign up now!"
+    click_link "Sign in"
     expect(page).to have_title(full_title(''))
   end
 end

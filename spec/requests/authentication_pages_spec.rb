@@ -5,13 +5,13 @@ describe "Authentication" do
   subject { page }
 
   describe "not signed in" do
-      before { visit signin_path }
+      before { visit root_path }
       it { should_not have_link('Profile') }
       it { should_not have_link('Settings') }
     end
 
   describe "signin" do
-    before { visit signin_path }
+    before { visit root_path }
 
     describe "with invalid information" do
     	before { click_button "Sign in" }
@@ -20,7 +20,7 @@ describe "Authentication" do
     	it { should have_error_message('Invalid') }
 
       describe "after visiting another page" do
-        before { click_link "Home" }
+        before { click_link "About" }
         it { should_not have_error_message('Invalid') }
       end
       
@@ -30,17 +30,12 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
       before { sign_in user }
 
-      describe "followed by signout" do
-        before { click_link "Sign out" }
-        it { should have_link('Sign in') }
-      end
-
       it { should have_title(user.name) }
       it { should have_link('Users',       href: users_path) }
       it { should have_link('Profile',     href: user_path(user)) }
       it { should have_link('Settings',    href: edit_user_path(user)) }
       it { should have_link('Sign out',    href: signout_path) }
-      it { should_not have_link('Sign in', href: signin_path) }
+      it { should_not have_link('Sign in', href: root_path) }
     end
 
   end
@@ -78,7 +73,7 @@ describe "authorization" do
           describe "when signing in again" do
             before do
               click_link "Sign out"
-              visit signin_path
+              visit root_path
               fill_in "Email",    with: user.email
               fill_in "Password", with: user.password
               click_button "Sign in"
@@ -112,7 +107,7 @@ describe "authorization" do
 
         describe "submitting to the update action" do
           before { patch user_path(user) }
-          specify { expect(response).to redirect_to(signin_path) }
+          specify { expect(response).to redirect_to(root_path) }
         end
 
          describe "visiting the user index" do

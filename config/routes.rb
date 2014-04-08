@@ -4,8 +4,7 @@ ShopSocial::Application.routes.draw do
   get "static_pages/home"
   get "static_pages/about"
 
-  root 'static_pages#home'
-  match '/signin',  to: 'sessions#new',         via: 'get'
+  root 'sessions#new'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
   match '/signup',  to: 'users#new',            via: 'get'
