@@ -112,27 +112,15 @@ describe "User pages" do
       let(:submit) { "Create my account" }
 
       before do
-
-      visit signup_path
-      fill_in "Name",         with: "Example User"
-      fill_in "Email",        with: "user@example.com"
-      fill_in "Password",     with: "foobar"
-      fill_in "Confirm Password", with: "foobar"
-      click_button submit
-      click_link "Sign out"
-
-
-      visit signup_path
-      fill_in "Name",         with: "Another User"
-      fill_in "Email",        with: "user1@example.com"
-      fill_in "Password",     with: "foobar"
-      fill_in "Confirm Password", with: "foobar"
-      click_button submit
-
+      fillin_with_name_and_email("Example User", "testuser1@example.com")
+      fillin_with_name_and_email("Another User", "testuser2@example.com")
+      
+      sign_in(user)
       visit user_path(user)
       fill_in 'value', with: "Example"
       click_button "Search For Friends"
     end
+
       it { should have_content("Example") }
       it { should_not have_content("Another") }
     end
