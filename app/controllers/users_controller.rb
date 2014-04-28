@@ -5,7 +5,13 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.paginate(page: params[:page])
+      if (params[:value])
+        @values = User.where("name LIKE \'%" + params[:value] + "%\'")
+        @users = @values.paginate(page: params[:page])
+      else
+        @users = User.paginate(page: params[:page])
+      end
+
   end
 
   def show
