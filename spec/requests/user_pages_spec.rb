@@ -112,6 +112,24 @@ describe "User pages" do
 
   	it { should have_content(user.name) }
   	it { should have_title(user.name) }
+    it { should have_content('Search For Friends') }
+
+    describe "should show only matching users for search" do
+      let(:submit) { "Create my account" }
+
+      before do
+      fillin_with_name_and_email("Example User", "testuser1@example.com")
+      fillin_with_name_and_email("Another User", "testuser2@example.com")
+      
+      sign_in(user)
+      visit user_path(user)
+      fill_in 'value', with: "Example"
+      click_button "Search For Friends"
+    end
+
+      it { should have_content("Example") }
+      it { should_not have_content("Another") }
+    end
   end
 
   describe "edit" do
