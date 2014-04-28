@@ -1,0 +1,14 @@
+<% provide(:title, 'All articles') %>
+<h1>All articles</h1>
+
+<%= will_paginate %>
+
+<ul class="articles">
+      <%= render @articles %>
+</ul>
+
+<%= will_paginate %>
+
+<% if current_user.admin? %>
+  <%= link_to 'Create an Article', new_article_path %>
+<% end %>
