@@ -71,7 +71,7 @@ before_action :admin_user,     only: [:edit, :update, :new, :create, :destroy]
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:id, :name, :description)
+      params.require(:article).permit(:id, :name, :description, :photo)
     end
 
     def signed_in_user

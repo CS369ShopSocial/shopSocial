@@ -26,4 +26,8 @@ ShopSocial::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  #Imagemagick path for Paperclip
+  Paperclip.options[:command_path] = "/Users/nicholashyatt/ImageMagick-6.8.8/bin"
+
 end
