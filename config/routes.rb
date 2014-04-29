@@ -1,4 +1,6 @@
 ShopSocial::Application.routes.draw do
+  resources :articles
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   get "static_pages/home"

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
   	   @user = User.new
-     end
+    end
   end
   def create
     if signed_in?
