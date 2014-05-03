@@ -1,12 +1,12 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :show, :new, :create]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :new, :create]
 before_action :admin_user,     only: [:edit, :update, :new, :create, :destroy]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.paginate(:page => params[:page])
+    @articles = Article.reorder("id ASC").paginate(:page => params[:page])
   end
 
   # GET /articles/1
