@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @article.image.url %>
+<%= image_tag @article.image.url(:medium) %>
+<%= image_tag @article.image.url(:thumb) %>
 <p>
-  <strong>Id:</strong>
-  <%= @article.id %>
+  <strong>UPC:</strong>
+  <%= @article.upc %>
 </p>
 
 <p>
@@ -14,8 +17,7 @@
   <strong>Description:</strong>
   <%= @article.description %>
 </p>
-
-<% if current_user.admin? %>
-  <%= link_to 'Edit', edit_article_path(@article) %> |
-<% end %>
+  <% if current_user.admin? %>
+    <%= link_to 'Edit', edit_article_path(@article) %> |
+  <% end %>
 <%= link_to 'Back', articles_path %>

@@ -20,9 +20,9 @@ namespace :db do
 
     100.times do |n|
       name = Faker::Company.name
-      id = n
+      upc = n
       description = Faker::Lorem.paragraph 
-      Article.create!(name: name, id: id, description: description)
+      Article.create!(name: name, upc: upc, description: description)
     end
   end
 end

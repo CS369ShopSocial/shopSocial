@@ -81,5 +81,14 @@ ShopSocial::Application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
   config.force_ssl = true
+
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['ShopSocial'],
+    :access_key_id => ENV['AKIAJIHPVJFG2X2U7I2A'],
+    :secret_access_key => ENV['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']
+  }
+}
   
 end
