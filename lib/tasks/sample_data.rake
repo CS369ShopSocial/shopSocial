@@ -24,5 +24,7 @@ namespace :db do
       description = Faker::Lorem.paragraph 
       Article.create!(name: name, upc: upc, description: description)
     end
+
+    Article.all.each { |article| article.image = File.open(Dir.glob(File.join(Rails.root, 'sampleimages', '*')).sample); article.save! }
   end
 end
