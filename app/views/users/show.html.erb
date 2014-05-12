@@ -17,10 +17,13 @@
               "(request sent)"
             end
             %>
+            <% if (current_user?(@user)) %>
             (<%= link_to "remove", friendship, :method => :delete %>)
+            <% end %>
           </li>
           <% end %>
         </ul>
+        <% if (current_user?(@user)) %>
         <h3>Friend Requests</h3>
         <ul>
           <% for friendship in (Friendship.where friend_id: @user.id) %>
@@ -28,11 +31,13 @@
               <li>
               <%= friendship.user.name %>
               <%= link_to "Confirm Friend", friendships_path(:friend_id => friendship.user.id), :method => :post %>
+              (<%= link_to "remove", friendship, :method => :delete %>)
               </li>
            <% end %>
           </li>
           <% end %>
         </ul>
+        <% end %>
       </aside>
       <h4>
         <form accept-charset="UTF-8" action="/users" method="get">

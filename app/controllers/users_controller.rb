@@ -22,7 +22,12 @@ class UsersController < ApplicationController
     if User.find(params[:id]) == current_user
         redirect_to root_url
     else
-      User.find(params[:id]).destroy
+
+      @tempUser = User.find(params[:id])
+      for friendship in (Friendship.where friend_id: @tempUser.id)
+        friendship.destroy
+      end     
+      @tempUser.destroy
       flash[:success] = "User deleted."
       redirect_to users_url
     end
@@ -42,7 +47,7 @@ class UsersController < ApplicationController
     	@user = User.new(user_params)
       if @user.save
         sign_in @user
-        flash[:success] = "Welcome to the Sample App!"
+        flash[:success] = "Welcome to the Shop Social!"
         redirect_to @user
       else
         render 'new'
