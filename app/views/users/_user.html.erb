@@ -1,6 +1,21 @@
 <li>
   <%= gravatar_for user, size: 52 %>
   <%= link_to user.name, user %>
+
+  <%= 
+  if (@tempFriendship = current_user.friendships.find_by friend_id: user.id)
+  	 if @tempFriendship.friend.friendships.find_by friend_id: current_user.id
+  	 	"Friended"
+  	 else
+  		"Friend Request Sent"
+  	 end
+  elsif (user.friendships.find_by friend_id: current_user.id)
+  	link_to "Confirm Friend", friendships_path(:friend_id => user), :method => :post
+  else
+  	 link_to "Send Friend Request", friendships_path(:friend_id => user), :method => :post
+  end
+  %>
+
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
