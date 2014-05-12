@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
 	def create
 		@friendship = current_user.friendships.build(:friend_id => params[:friend_id])
 		if @friendship.save
-			flash[:success] = "Friend Request Sent"
+			flash[:notice] = "Friend Added"
 			redirect_to current_user
 		else
 			flash[:error] = "Unable to Send Request"
