@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @article.image.url %>
+<%-# <%= image_tag @article.image.url %>  
 <%= image_tag @article.image.url(:medium) %>
-<%= image_tag @article.image.url(:thumb) %>
+<%-#<%= image_tag @article.image.url(:thumb) %>
 <p>
   <strong>UPC:</strong>
   <%= @article.upc %>
