@@ -39,10 +39,10 @@ describe "Articles" do
         end
 
         it { should have_link('Create an Article', href: '/articles/new') }
-        it { should have_link('delete', href: article_path(Article.first)) }
+        it { should have_link('Delete', href: article_path(Article.first)) }
         it "should be able to delete an article" do
           expect do
-            click_link('delete', match: :first)
+            click_link('Delete', match: :first)
           end.to change(Article, :count).by(-1)
         end
       end

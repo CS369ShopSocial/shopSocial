@@ -12,7 +12,7 @@ FactoryGirl.define do
 
   factory :article do
     sequence(:name) { |n| "Article #{n}" }
-    sequence(:id) { |n| "#{n}" }
+    sequence(:upc) { |n| "#{n}" }
     description "Blah Blah description"
   end
 end
