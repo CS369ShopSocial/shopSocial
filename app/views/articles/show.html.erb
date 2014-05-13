@@ -1,23 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<%-# <%= image_tag @article.image.url %>  
-<%= image_tag @article.image.url(:medium) %>
-<%-#<%= image_tag @article.image.url(:thumb) %>
-<p>
-  <strong>UPC:</strong>
-  <%= @article.upc %>
-</p>
-
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @article.name %>
-</p>
+</h1>
+
+<%-# <%= image_tag @article.image.url %>  
+<%= image_tag @article.image.url(:medium), class: "imgcenter" %>
+<%-#<%= image_tag @article.image.url(:thumb) %>
 
 <p>
   <strong>Description:</strong>
   <%= @article.description %>
 </p>
+
+<p>
+  <strong>UPC:</strong>
+  <%= @article.upc %>
+</p>
+
+<div class="center">
+   <% if (@closet = current_user.closets.find_by article_id: @article.id) %>
+     <%= link_to "Remove From Closet", @closet, :method => :delete, class: "btn-custom btn-large" %>
+   <% else %>
+     <%= link_to "Own It!", closets_path(:article_id => @article), :method => :post, class: "btn-custom btn-large" %>
+   <% end %>
+</div>
+
   <% if current_user.admin? %>
-    <%= link_to 'Edit', edit_article_path(@article) %> |
+    <%= link_to "Delete", @article, method: :delete, data: { confirm: "You sure?" } %>
+    | <%= link_to 'Edit', edit_article_path(@article) %> |
   <% end %>
 <%= link_to 'Back', articles_path %>

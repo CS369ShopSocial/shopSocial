@@ -1,9 +1,17 @@
 <li>
  <%= image_tag article.image.url(:thumb) %>
  <%= link_to article.name, article %>
- <% if current_user.admin? %>
-   | <%= link_to "Delete", article, method: :delete,
-                                 data: { confirm: "You sure?" } %>
-     <%= link_to 'Edit', edit_article_path(article) %>
- <% end %>
+ <span class="right">
+   <% if (@closet = current_user.closets.find_by article_id: article.id) %>
+     <%= link_to "Remove From Closet", @closet, :method => :delete, class: "btn-custom btn-large" %>
+   <% else %>
+     <%= link_to "Own It!", closets_path(:article_id => article), :method => :post, class: "btn-custom btn-large" %>
+   <% end %>
+
+   <% if current_user.admin? %>
+     | <%= link_to "Delete", article, method: :delete,
+                                   data: { confirm: "You sure?" } %>
+       <%= link_to 'Edit', edit_article_path(article) %>
+   <% end %>
+ </span>
 </li>

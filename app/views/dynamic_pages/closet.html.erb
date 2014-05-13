@@ -1,0 +1,12 @@
+<% provide(:title, 'My Closet') %>
+  <h1>My Closet</h1>
+
+  <%= will_paginate %>
+
+    <ul class="articles">
+        <li>
+          <%= render @dynamic_pages %>
+        </li>
+    </ul>
+
+  <%= will_paginate %>

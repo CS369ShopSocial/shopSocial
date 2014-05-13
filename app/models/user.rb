@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :closets, dependent: :destroy
+  has_many :articles, :through => :closets
   has_many :friendships,  dependent: :destroy
   has_many :friends, :through => :friendships
 

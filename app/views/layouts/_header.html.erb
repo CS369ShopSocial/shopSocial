@@ -2,6 +2,11 @@
   <div class="navbar-inner">
     <div class="container">
       <nav>
+        <ul class="nav pull-left">
+          <% if signed_in? %>
+            <li><%= link_to "My Closet", '/closet' %></li>
+          <% end %>
+        </ul>
         <ul class="nav pull-right">
           <% if signed_in? %>
             <li><%= link_to "Users", users_path %></li>
