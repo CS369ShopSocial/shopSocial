@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  has_many :friendships,  dependent: :destroy
+  has_many :friends, :through => :friendships
+
 	before_save { email.downcase! }
 	before_create :create_remember_token
 

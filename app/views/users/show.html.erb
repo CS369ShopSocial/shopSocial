@@ -6,15 +6,49 @@
         <%= gravatar_for @user, size: 100 %>
         <%= @user.name %>
       </h1>
-    </section>
-      <h2>
+      <aside class="span4">
+      <h2>Friends List</h2>
+        <ul>
+          <% for friendship in @user.friendships %>
+          <li>
+            <%=h friendship.friend.name %>
+            <%= 
+            if !(friendship.friend.friendships.find_by friend_id: @user.id)
+              "(request sent)"
+            end
+            %>
+            <% if (current_user?(@user)) %>
+            (<%= link_to "remove", friendship, :method => :delete %>)
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+        <% if (current_user?(@user)) %>
+        <h3>Friend Requests</h3>
+        <ul>
+          <% for friendship in (Friendship.where friend_id: @user.id) %>
+           <% if !(@user.friendships.find_by friend_id: friendship.user.id) %>
+              <li>
+              <%= friendship.user.name %>
+              <%= link_to "Confirm Friend", friendships_path(:friend_id => friendship.user.id), :method => :post %>
+              (<%= link_to "remove", friendship, :method => :delete %>)
+              </li>
+           <% end %>
+          </li>
+          <% end %>
+        </ul>
+        <% end %>
+      </aside>
+      <h4>
         <form accept-charset="UTF-8" action="/users" method="get">
           <div style="margin:0;padding:0">
             <input name="value" type="text" value="">
             <button type="submit" class="btn-custom">Search For Friends</button>
           </div>
         </form>
-      </h2>
+      </h4>
+    </section>
+
   </aside>
 </div>
 
